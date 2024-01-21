@@ -8,3 +8,4 @@ GUI for YouTube DLP
 First, download the latest release, on windows, execute it normally, on macos, go into your terminal, navigate to the directory of the file and run
 ```zsh
 chmod -x THE_RELEASE_NAME_DEFAULT_macos_app
+```
