@@ -21,8 +21,7 @@ jobs:
           pip install -r requirements.txt
       - name: Try building
         run: |
-          mkdir dist
-          cxfreeze app.py --target-dir dist
+          pyinstaller app.py
 
       - name: List result
         run: |
