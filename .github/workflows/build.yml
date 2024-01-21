@@ -1,0 +1,37 @@
+name: Build
+
+on:
+  workflow_dispatch:
+
+jobs:
+  BuildWindows:
+    runs-on: windows-latest
+    steps:
+      - name: Clone Repo
+        uses: actions/checkout@v4
+      
+      - name: Set up Python 3.12.1
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.12.1
+        
+      - name: Install Dependencies
+        run: | 
+          python -m pip install --upgrade pip setuptools wheel
+          pip install -r requirements.txt
+      - name: Try building
+        run: |
+          mkdir dist
+          cxfreeze app.py --target-dir dist
+
+      - name: List result
+        run: |
+          cd dist
+          ls
+        
+      - name: Archive code coverage results
+        uses: actions/upload-artifact@v4
+        with:
+          name: buildWindows
+          path: dist/app.exe
+          
