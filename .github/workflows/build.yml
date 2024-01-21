@@ -35,4 +35,15 @@ jobs:
           path: dist/app.exe
       - name: Give out pyinstaller version
         run: pyinstaller --version
+        
+  Release:
+    needs: BuildWindows
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: buildWindows
+      - name: List dir
+        run: ls
           
