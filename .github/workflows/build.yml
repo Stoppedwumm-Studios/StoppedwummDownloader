@@ -28,7 +28,7 @@ jobs:
           cd dist
           ls
         
-      - name: Archive code coverage results
+      - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
           name: buildWindows
