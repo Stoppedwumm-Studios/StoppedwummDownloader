@@ -21,7 +21,7 @@ jobs:
           pip install -r requirements.txt
       - name: Try building
         run: |
-          pyinstaller --one-file app.py
+          pyinstaller --onefile app.py
 
       - name: List result
         run: |
