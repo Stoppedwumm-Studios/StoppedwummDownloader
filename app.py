@@ -77,7 +77,8 @@ def on_closing():
         os.remove(thumbnail_path)
 
 on_closing()
-mainscreen = tk.Tk("DreckPort-Downloader")
+mainscreen = tk.Tk("StoppedwummDownloader")
+mainscreen.title("StoppedwummDownloader")
 
 infoFrame = tk.Frame(mainscreen)
 downloadFrame = tk.Frame(mainscreen)
