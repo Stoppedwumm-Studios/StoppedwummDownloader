@@ -1,10 +1,10 @@
-name: Build
+name: Test
 
 on:
-  workflow_dispatch:
-  
+  pull_request:
+
 jobs:
-  BuildWindows:
+  TestWindows:
     runs-on: windows-latest
     steps:
       - name: Clone Repo
@@ -28,31 +28,10 @@ jobs:
           cd dist
           ls
         
-      - name: Upload Artifact
+      - name: Archive code coverage results
         uses: actions/upload-artifact@v4
         with:
-          name: buildWindows
+          name: TestWindows
           path: dist/app.exe
       - name: Give out pyinstaller version
         run: pyinstaller --version
-        
-  Release:
-    needs: BuildWindows
-    runs-on: ubuntu-latest
-    steps:
-      - name: Download Artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: buildWindows
-      - name: List dir
-        run: ls
-      - name: "Create Release"
-        uses: "marvinpinto/action-automatic-releases@latest"
-        with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: "latest"
-          prerelease: false
-          title: "Latest Build"
-          files: |
-            app.exe
-          
