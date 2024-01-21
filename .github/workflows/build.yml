@@ -35,15 +35,53 @@ jobs:
           path: dist/app.exe
       - name: Give out pyinstaller version
         run: pyinstaller --version
+  
+  BuildMac:
+    runs-on: macos-latest
+    steps:
+      - name: Clone Repo
+        uses: actions/checkout@v4
+      
+      - name: Set up Python 3.12.1
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.12.1
+        
+      - name: Install Dependencies
+        run: | 
+          python -m pip install --upgrade pip setuptools wheel
+          pip install -r requirements.txt
+      - name: Try building
+        run: |
+          pyinstaller --onefile app.py
+
+      - name: Prepare
+        run: |
+          cd dist
+          mv app macos-app
+          chmod +x macos-app
+        
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: buildMac
+          path: dist/macos-app
+
+      - name: Give out pyinstaller version
+        run: pyinstaller --version
         
   Release:
-    needs: BuildWindows
+    needs: [BuildWindows, BuildMac]
     runs-on: ubuntu-latest
     steps:
       - name: Download Artifact
         uses: actions/download-artifact@v4
         with:
           name: buildWindows
+      - name: Download Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: buildMac
       - name: List dir
         run: ls
       - name: "Create Release"
@@ -55,4 +93,4 @@ jobs:
           title: "Latest Build"
           files: |
             app.exe
-          
+            macos-app
