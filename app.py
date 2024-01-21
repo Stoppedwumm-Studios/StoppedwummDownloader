@@ -129,3 +129,4 @@ downloadFrame.pack()
 
 mainscreen.mainloop()
 on_closing()
+print("Deleted Thumbnail and temporary data, goodbye")
