@@ -9,3 +9,5 @@ First, download the latest release (<https://github.com/Stoppedwumm-Studios/Stop
 ```zsh
 chmod +x THE_RELEASE_NAME_DEFAULT_macos_app
 ```
+
+For more information, check out our wiki at <https://github.com/Stoppedwumm-Studios/StoppedwummDownloader/wiki/>
