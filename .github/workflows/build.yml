@@ -58,11 +58,24 @@ jobs:
           --windowed \
           app.py
 
-      #- name: Prepare
-        #run: |
-        #cd dist
-        #mv app macos-app
-        #chmod +x macos-app
+      - name: Prepare Homebrew
+        run: brew install create-dmg
+        
+      - name: Prepare for dmg
+        run: |
+          mkdir -p dist/dmg
+          cp -r "dist/StoppedwummDownloader.app" dist/dmg
+      - name: Compile dmg
+        run: |
+          create-dmg \
+          --volname "StoppedwummDownloader" \
+          --window-pos 200 120 \
+          --window-size 600 300 \
+          --icon "StoppedwummDonloader.app" 175 120 \
+          --hide-extension "StoppedwummDownloader.app" \
+          --app-drop-link 425 120 \
+            "dist/StoppedwummDownloader.dmg" \
+            "dist/dmg/"
         
       #- name: Upload Artifact
         #uses: actions/upload-artifact@v4
@@ -71,7 +84,7 @@ jobs:
           #path: dist/macos-app
       - name: List
         run: |
-          ls ./dist/
+          ls dist/dmg
 
       - name: Give out pyinstaller version
         run: pyinstaller --version
