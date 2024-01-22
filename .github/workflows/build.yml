@@ -51,6 +51,7 @@ jobs:
         run: | 
           python -m pip install --upgrade pip setuptools wheel
           pip install -r requirements.txt
+          pip install -U py2app
       - name: Try building
         run: |
           pyinstaller --onefile app.py
