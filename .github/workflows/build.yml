@@ -59,11 +59,10 @@ jobs:
           app.py
 
       - name: Prepare Homebrew
-        run: brew install create-dmg
-      - name: Diagnostics
         run: |
-          brew config
-          brew doctor
+          brew install create-dmg
+          brew update
+        
       - name: Prepare for dmg
         run: |
           mkdir -p dist/dmg
