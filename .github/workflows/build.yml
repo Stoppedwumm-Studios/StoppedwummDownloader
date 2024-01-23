@@ -69,7 +69,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: buildMac
-          path: app.tar
+          path: macos-app.tar
 
       - name: Give out pyinstaller version
         run: pyinstaller --version
@@ -88,9 +88,6 @@ jobs:
           name: buildMac
       - name: List dir
         run: ls
-      - name: Unzip Tar
-        run: |
-          tar xfv app.tar
       - name: List dir
         run: ls dist
       - name: "Create Release"
@@ -102,4 +99,4 @@ jobs:
           title: "Latest Build"
           files: |
             app.exe
-            dist/StoppedwummDownloader.app
+            macos-app.tar
