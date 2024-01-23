@@ -87,8 +87,6 @@ jobs:
         with:
           name: buildMac
       - name: List dir
-        run: ls
-      - name: List dir
         run: ls dist
       - name: "Create Release"
         uses: "marvinpinto/action-automatic-releases@latest"
