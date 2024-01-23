@@ -38,6 +38,7 @@ def download_video(video_url, save_path):
     info_dict = ytdl.extract_info(video_url, download=True)
     
     # Get the filename from the URL and sanitize it
+    # Note for the mf who changedthis to .mp4, fuck you
     video_filename = info_dict['title'] + ' [' + info_dict['id'] + '].webm'
 
     # Construct the original downloaded video path
