@@ -5,6 +5,17 @@ from yt_dlp import YoutubeDL
 from PIL import ImageTk, Image
 import os
 import urllib.parse
+from moviepy.editor import VideoFileClip
+
+def convert_webm_to_mp4(input_file, output_file):
+    # Load the WebM file
+    video_clip = VideoFileClip(input_file)
+
+    # Write the video clip to an MP4 file
+    video_clip.write_videofile(output_file, codec='libx264', audio_codec='aac')
+
+    # Close the video clip
+    video_clip.close()
 
 def download_thumbnail(video_url, output_path='thumbnail.jpg'):
     # Create a yt-dlp instance
@@ -44,6 +55,7 @@ def download_video(video_url, save_path):
     # Construct the original downloaded video path
     original_video_path = os.path.join(os.getcwd(), video_filename)
 
+    warn(original_video_path, video_path)
     # Rename the downloaded video to the desired output path
     video_path = os.path.join(save_path, video_filename)
     os.rename(original_video_path, video_path)
