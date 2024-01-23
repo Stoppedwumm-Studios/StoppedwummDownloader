@@ -7,6 +7,16 @@ import os
 import urllib.parse
 from moviepy.editor import VideoFileClip
 
+def convert_webm_to_mp4_filename(webm_filename):
+    # Check if the input string has a ".webm" extension
+    if webm_filename.endswith('.webm'):
+        # Replace ".webm" with ".mp4"
+        mp4_filename = webm_filename[:-5] + '.mp4'
+        return mp4_filename
+    else:
+        # If the input doesn't have a ".webm" extension, return as is
+        return webm_filename
+
 def convert_webm_to_mp4(input_file, output_file):
     # Load the WebM file
     video_clip = VideoFileClip(input_file)
@@ -55,10 +65,14 @@ def download_video(video_url, save_path):
     # Construct the original downloaded video path
     original_video_path = os.path.join(os.getcwd(), video_filename)
 
-    warn(original_video_path, video_path)
+    
     # Rename the downloaded video to the desired output path
     video_path = os.path.join(save_path, video_filename)
     os.rename(original_video_path, video_path)
+    
+    RealName = convert_webm_to_mp4_filename(video_path)
+    
+    convert_webm_to_mp4(video_path, RealName)
 
     print(f'Video downloaded and saved as: {video_path}')
     return video_path
@@ -98,6 +112,7 @@ text = tk.Entry(downloadFrame)
 infoLabel = tk.Label(downloadFrame, text="Downloading...")
 videoTitle = tk.Label(infoFrame, text="Video Title")
 videoTitle.pack()
+DownloadingInfo = Tk.Label(infoFrame, text="Downloading, check the terminal/cmd for progress")
 
 # Added label to show the thumbnail
 thumbnail_label = tk.Label(infoFrame)
@@ -134,7 +149,9 @@ def ClickButton2():
 
 def Download():
     Thread = threading.Thread(target=download_button_click, daemon=True)
-    Thread.run()
+    DownloadingInfo.pack()
+    Thread.start()
+    DownloadingInfo.pack_forget()
     
 button = tk.Button(mainscreen, text="Click me", command=ClickButton2)
 URLlabel.pack()
