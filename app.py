@@ -34,13 +34,11 @@ def download_video(video_url, save_path):
 
     # Create a yt-dlp instance
     ytdl = YoutubeDL()
-
-    # Download the video
-    with ytdl:
-        info_dict = ytdl.extract_info(video_url, download=True)
+    
+    info_dict = ytdl.extract_info(video_url, download=True)
     
     # Get the filename from the URL and sanitize it
-    video_filename = urllib.parse.unquote(info_dict['title'] + ' [' + info_dict['id'] + '].mp4')
+    video_filename = info_dict['title'] + ' [' + info_dict['id'] + '].mp4'
 
     # Construct the original downloaded video path
     original_video_path = os.path.join(os.getcwd(), video_filename)
@@ -53,7 +51,7 @@ def download_video(video_url, save_path):
     return video_path
 
 def download_button_click():
-    file_path = filedialog.asksaveasfilename(defaultextension=".webm", filetypes=[("WebM files", "*.webm"), ("All files", "*.*")])
+    file_path = filedialog.asksaveasfilename(defaultextension=".mp4", filetypes=[("mp4 files", "*.mp4"), ("All files", "*.*")])
     
     if file_path:
         URL = text.get()
@@ -93,8 +91,7 @@ thumbnail_label = tk.Label(infoFrame)
 thumbnail_label.pack()
 
 # Download button
-download_button = tk.Button(infoFrame, text="Download", command=download_button_click)
-download_button.pack()
+
 
 VideoInfo={}
 
@@ -122,11 +119,17 @@ def ClickButton2():
     ButtonClickThread = threading.Thread(target=ClickButton, daemon=True)
     ButtonClickThread.start()
 
+def Download():
+    Thread = threading.Thread(target=download_button_click, daemon=True)
+    Thread.run()
+    
 button = tk.Button(mainscreen, text="Click me", command=ClickButton2)
 URLlabel.pack()
 text.pack()
 button.pack()
 downloadFrame.pack()
+download_button = tk.Button(infoFrame, text="Download", command=Download)
+download_button.pack()
 
 mainscreen.mainloop()
 on_closing()
