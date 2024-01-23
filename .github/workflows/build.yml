@@ -64,7 +64,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: buildMac
-          path: dist/StoppedwummDownloader.app
+          path: ./dist/StoppedwummDownloader.app
 
       - name: Give out pyinstaller version
         run: pyinstaller --version
