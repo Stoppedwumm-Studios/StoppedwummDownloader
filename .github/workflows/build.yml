@@ -22,7 +22,8 @@ jobs:
       - name: Try building
         run: |
           pyinstaller --onefile \
-          --icon 'images/win.ico' \
+          --icon='images/win.ico' \
+          --noconsole \
           app.py
 
       - name: List result
@@ -59,6 +60,7 @@ jobs:
           --name 'StoppedwummDownloader' \
           --windowed \
           --icon 'images/win.ico' \
+          --noconsole \
           app.py
       - name: List Directory
         run: |
