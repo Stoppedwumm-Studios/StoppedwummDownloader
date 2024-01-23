@@ -22,7 +22,7 @@ jobs:
       - name: Try building
         run: |
           pyinstaller --onefile \
-          --icon='images/win.ico' \
+          --i"images/win.ico" \
           --noconsole \
           app.py
 
@@ -59,7 +59,7 @@ jobs:
           pyinstaller --onefile \
           --name 'StoppedwummDownloader' \
           --windowed \
-          --i"images/win.ico" \
+          --icon "images/win.ico" \
           --noconsole \
           app.py
       - name: List Directory
