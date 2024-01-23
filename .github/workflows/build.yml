@@ -59,7 +59,7 @@ jobs:
           pyinstaller --onefile \
           --name 'StoppedwummDownloader' \
           --windowed \
-          --icon 'images/win.ico' \
+          --i"images/win.ico" \
           --noconsole \
           app.py
       - name: List Directory
