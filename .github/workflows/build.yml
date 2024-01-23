@@ -86,8 +86,6 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: buildMac
-      - name: List dir
-        run: ls dist
       - name: "Create Release"
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
