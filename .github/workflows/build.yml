@@ -53,22 +53,17 @@ jobs:
           pip install -r requirements.txt
       - name: Try building
         run: |
-          pyinstaller --onefile \
-          --name 'StoppedwummDownloader' \
-          --windowed \
-          --icon "images/win.ico" \
-          app.py
+          pyinstaller --onefile app.py
+          mv app macos-app
       - name: List Directory
         run: |
-          ls ./dist
-      - name: Zip App
-        run: |
-          tar cfv macos-app.tar ./dist/StoppedwummDownloader.app
+          ls dist
+      
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
           name: buildMac
-          path: macos-app.tar
+          path: dist/macos-app
 
       - name: Give out pyinstaller version
         run: pyinstaller --version
@@ -94,4 +89,4 @@ jobs:
           title: "Latest Build"
           files: |
             app.exe
-            macos-app.tar
+            macos-app
