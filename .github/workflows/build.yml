@@ -57,7 +57,9 @@ jobs:
           --name 'StoppedwummDownloader' \
           --windowed \
           app.py
-        
+      - name: List Directory
+        run: |
+          ls ./dist
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
