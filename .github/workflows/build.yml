@@ -60,11 +60,14 @@ jobs:
       - name: List Directory
         run: |
           ls ./dist
+      - name: Zip App
+        run: |
+          tar cfv app.tar ./dist/StoppedwummDownloader.app
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
           name: buildMac
-          path: ./dist/StoppedwummDownloader.app
+          path: app.tar
 
       - name: Give out pyinstaller version
         run: pyinstaller --version
@@ -83,13 +86,18 @@ jobs:
           name: buildMac
       - name: List dir
         run: ls
-      - name: "Create Release"
-        uses: "marvinpinto/action-automatic-releases@latest"
-        with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: "latest"
-          prerelease: false
-          title: "Latest Build"
-          files: |
-            app.exe
-            StoppedwummDownloader.app
+      - name: Unzip Tar
+        run: |
+          tar xfv app.tar
+      - name: List dir
+        run: ls
+      #- name: "Create Release"
+        #uses: "marvinpinto/action-automatic-releases@latest"
+        #with:
+          #repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          #automatic_release_tag: "latest"
+          #prerelease: false
+          #title: "Latest Build"
+          #files: |
+          #app.exe
+          #StoppedwummDownloader.app
