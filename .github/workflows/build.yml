@@ -90,7 +90,7 @@ jobs:
         run: |
           tar xfv app.tar
       - name: List dir
-        run: ls
+        run: ls dist
       #- name: "Create Release"
         #uses: "marvinpinto/action-automatic-releases@latest"
         #with:
