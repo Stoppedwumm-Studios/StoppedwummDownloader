@@ -91,13 +91,13 @@ jobs:
           tar xfv app.tar
       - name: List dir
         run: ls dist
-      #- name: "Create Release"
-        #uses: "marvinpinto/action-automatic-releases@latest"
-        #with:
-          #repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          #automatic_release_tag: "latest"
-          #prerelease: false
-          #title: "Latest Build"
-          #files: |
-          #app.exe
-          #StoppedwummDownloader.app
+      - name: "Create Release"
+        uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "latest"
+          prerelease: false
+          title: "Latest Build"
+          files: |
+            app.exe
+            dist/StoppedwummDownloader.app
