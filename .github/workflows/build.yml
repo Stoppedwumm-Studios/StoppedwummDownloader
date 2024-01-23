@@ -22,7 +22,7 @@ jobs:
       - name: Try building
         run: |
           pyinstaller --onefile \
-          --i"images/win.ico" \
+          -i"images/win.ico" \
           --noconsole \
           app.py
 
