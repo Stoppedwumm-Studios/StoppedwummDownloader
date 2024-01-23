@@ -54,6 +54,7 @@ jobs:
       - name: Try building
         run: |
           pyinstaller --onefile app.py
+          cd dist
           mv app macos-app
       - name: List Directory
         run: |
