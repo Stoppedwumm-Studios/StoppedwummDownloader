@@ -74,8 +74,6 @@ def download_button_click():
         URL = text.get()
         video_path = download_video(URL, os.path.dirname(file_path))
         
-        # Delete the thumbnail file
-        os.remove(thumbnail_path)
         print(f'Video downloaded and saved as: {video_path}')
 
         # Hide the infoFrame
