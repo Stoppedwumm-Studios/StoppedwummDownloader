@@ -123,3 +123,4 @@ jobs:
           files: |
             app.exe
             macos-app
+            linux-app
