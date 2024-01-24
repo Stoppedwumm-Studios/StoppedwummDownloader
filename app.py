@@ -48,7 +48,7 @@ def download_video(video_url, save_path):
     os.makedirs(save_path, exist_ok=True)
 
     # Create a yt-dlp instance
-    ytdl = YoutubeDL()
+    ytdl = YoutubeDL({'format': 'mp4'})
     
     info_dict = ytdl.extract_info(video_url, download=True)
     
