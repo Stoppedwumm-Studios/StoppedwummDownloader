@@ -1,4 +1,4 @@
 yt_dlp
 pillow==9.5.0
 pyinstaller
-moviepy
+ffmpeg

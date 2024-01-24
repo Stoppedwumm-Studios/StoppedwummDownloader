@@ -5,7 +5,8 @@ from yt_dlp import YoutubeDL
 from PIL import ImageTk, Image
 import os
 import urllib.parse
-from moviepy.editor import VideoFileClip
+import ffmpeg
+from time import sleep
 
 def convert_webm_to_mp4_filename(webm_filename):
     # Check if the input string has a ".webm" extension
@@ -18,14 +19,7 @@ def convert_webm_to_mp4_filename(webm_filename):
         return webm_filename
 
 def convert_webm_to_mp4(input_file, output_file):
-    # Load the WebM file
-    video_clip = VideoFileClip(input_file)
-
-    # Write the video clip to an MP4 file
-    video_clip.write_videofile(output_file, codec='libx264', audio_codec='aac')
-
-    # Close the video clip
-    video_clip.close()
+    ffmpeg.input(input_file).output(output_file).run()
 
 def download_thumbnail(video_url, output_path='thumbnail.jpg'):
     # Create a yt-dlp instance
@@ -60,7 +54,7 @@ def download_video(video_url, save_path):
     
     # Get the filename from the URL and sanitize it
     # Note for the mf who changedthis to .mp4, fuck you
-    video_filename = info_dict['title'] + ' [' + info_dict['id'] + '].webm'
+    video_filename = info_dict['title'] + ' [' + info_dict['id'] + '].mp4'
 
     # Construct the original downloaded video path
     original_video_path = os.path.join(os.getcwd(), video_filename)
@@ -69,26 +63,19 @@ def download_video(video_url, save_path):
     # Rename the downloaded video to the desired output path
     video_path = os.path.join(save_path, video_filename)
     os.rename(original_video_path, video_path)
-    
-    RealName = convert_webm_to_mp4_filename(video_path)
-    
-    convert_webm_to_mp4(video_path, RealName)
 
     print(f'Video downloaded and saved as: {video_path}')
     return video_path
 
 def download_button_click():
-    file_path = filedialog.asksaveasfilename(defaultextension=".webm", filetypes=[("webm files", "*.webm"), ("All files", "*.*")])
+    file_path = filedialog.asksaveasfilename(defaultextension=".webm", filetypes=[("mp4 Video files", "*.mp4"), ("All files", "*.*")])
     
     if file_path:
         URL = text.get()
-        thumbnail_path = download_thumbnail(URL)
         video_path = download_video(URL, os.path.dirname(file_path))
         
         # Delete the thumbnail file
         os.remove(thumbnail_path)
-
-        print(f'Thumbnail downloaded and saved as: {thumbnail_path}')
         print(f'Video downloaded and saved as: {video_path}')
 
         # Hide the infoFrame
@@ -112,7 +99,7 @@ text = tk.Entry(downloadFrame)
 infoLabel = tk.Label(downloadFrame, text="Downloading...")
 videoTitle = tk.Label(infoFrame, text="Video Title")
 videoTitle.pack()
-DownloadingInfo = Tk.Label(infoFrame, text="Downloading, check the terminal/cmd for progress")
+DownloadingInfo = tk.Label(infoFrame, text="Downloading, check the terminal/cmd for progress")
 
 # Added label to show the thumbnail
 thumbnail_label = tk.Label(infoFrame)
