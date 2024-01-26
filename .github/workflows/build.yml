@@ -21,7 +21,7 @@ jobs:
           pip install -r requirements.txt
       - name: Try building
         run: |
-          pyinstaller --onefile --icon="images/win.ico" app.py
+          pyinstaller --onefile --noconsole app.py
 
       - name: List result
         run: |
