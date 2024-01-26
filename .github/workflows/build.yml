@@ -15,11 +15,6 @@ jobs:
         with:
           python-version: 3.12.1
         
-
-      - name: List result
-        run: |
-          cd dist
-          ls
           
       - name: .tar.gz
         run: tar -czf StoppedwummDownloaderWin.tar.gz app.py requirements.txt LICENSE
