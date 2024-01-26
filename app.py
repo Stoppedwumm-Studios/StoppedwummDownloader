@@ -89,15 +89,23 @@ def on_closing():
 on_closing()
 mainscreen = tk.Tk("StoppedwummDownloader")
 mainscreen.title("StoppedwummDownloader")
+mainscreen.configure(background='black')
 
 infoFrame = tk.Frame(mainscreen)
+infoFrame.configure(background='black')
 downloadFrame = tk.Frame(mainscreen)
+downloadFrame.configure(background='black')
 URLlabel = tk.Label(downloadFrame, text="URL:")
+URLlabel.configure(background='black', fg='white')
 text = tk.Entry(downloadFrame)
+text.configure(background='black', fg='white')
 infoLabel = tk.Label(downloadFrame, text="Downloading...")
+infoLabel.configure(background='black', fg='white')
 videoTitle = tk.Label(infoFrame, text="Video Title")
+videoTitle.configure(background='black', fg='white')
 videoTitle.pack()
 DownloadingInfo = tk.Label(infoFrame, text="Downloading, check the terminal/cmd for progress")
+DownloadingInfo.configure(background='black', fg='white')
 
 # Added label to show the thumbnail
 thumbnail_label = tk.Label(infoFrame)
@@ -139,11 +147,13 @@ def Download():
     DownloadingInfo.pack_forget()
     
 button = tk.Button(mainscreen, text="Click me", command=ClickButton2)
+button.configure(background='black', fg='white')
 URLlabel.pack()
 text.pack()
 button.pack()
 downloadFrame.pack()
 download_button = tk.Button(infoFrame, text="Download", command=Download)
+download_button.configure(background='black', fg='white')
 download_button.pack()
 
 mainscreen.mainloop()
