@@ -24,8 +24,6 @@ jobs:
         with:
           name: buildWindows
           path: StoppedwummDownloaderWin.tar.gz
-      - name: Give out pyinstaller version
-        run: pyinstaller --version
   
   BuildMac:
     runs-on: macos-latest
