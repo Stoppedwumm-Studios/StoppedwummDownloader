@@ -1,6 +1,8 @@
 # StoppedwummDownloader-YTDownloader
 GUI for YouTube DLP
 
+![](https://stoppedwumm-studios.github.io/StoppedwummDownloader/mac.icns)
+
 (Forked Name: DreckPort-Downloader, origin repository deleted)
 
 ## How to run
