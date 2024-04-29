@@ -1,4 +1,4 @@
-yt_dlp==2023.12.30
+yt_dlp==2024.4.9
 pillow==9.5.0
 pyinstaller
 ffmpeg
