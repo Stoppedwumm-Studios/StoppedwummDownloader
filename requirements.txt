@@ -2,3 +2,4 @@ yt_dlp==2024.7.1
 pillow==9.5.0
 pyinstaller
 ffmpeg
+webp
