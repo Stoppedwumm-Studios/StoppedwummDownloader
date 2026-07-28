@@ -1,4 +1,4 @@
-yt_dlp==2026.2.21
+yt_dlp==2026.7.4
 pillow
 pyinstaller
 ffmpeg
